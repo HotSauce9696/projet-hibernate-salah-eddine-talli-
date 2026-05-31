@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="javafxapplicationproduit.ProduitController"
+      spacing="10" style="-fx-background-color: #f5f5f5;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <!-- Title -->
+    <Label text="Gestion des Produits" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+        <VBox.margin>
+            <Insets bottom="10"/>
+        </VBox.margin>
+    </Label>
+    
+    <!-- Search Bar (Bonus feature) -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Rechercher:" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="searchField" promptText="Rechercher par libellé ou type..." HBox.hgrow="ALWAYS"/>
+        <Button text="Effacer" onAction="#handleClearSearch" style="-fx-background-color: #95a5a6; -fx-text-fill: white;">
+            <HBox.margin>
+                <Insets right="10"/>
+            </HBox.margin>
+        </Button>
+    </HBox>
+    
+    <Separator/>
+    
+    <!-- Form Area -->
+    <GridPane hgap="10" vgap="10" style="-fx-background-color: white; -fx-padding: 15; -fx-border-color: #ddd; -fx-border-radius: 5;">
+        
+        <Label text="Code:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="codeField" promptText="Code produit" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="200"/>
+        
+        <Label text="Libellé:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="libelleField" promptText="Libellé produit" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        
+        <Label text="Type:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="typeComboBox" promptText="Sélectionner un type" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="200" editable="true"/>
+        
+        <Label text="Quantité en stock:" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="quantiteField" promptText="Quantité" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+        
+        <Label text="Disponibilité:" GridPane.rowIndex="4" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <CheckBox fx:id="disponibiliteCheckBox" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+        
+        <!-- Hidden field for product ID -->
+        <TextField fx:id="idField" visible="false" managed="false" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+    </GridPane>
+    
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Ajouter" onAction="#handleAjouter" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;">
+            <HBox.margin>
+                <Insets right="5"/>
+            </HBox.margin>
+        </Button>
+        <Button text="Modifier" onAction="#handleModifier" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;">
+            <HBox.margin>
+                <Insets right="5"/>
+            </HBox.margin>
+        </Button>
+        <Button text="Supprimer" onAction="#handleSupprimer" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;">
+            <HBox.margin>
+                <Insets right="5"/>
+            </HBox.margin>
+        </Button>
+        <Button text="Actualiser" onAction="#handleActualiser" style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold;"/>
+    </HBox>
+    
+    <Separator/>
+    
+    <!-- Table View -->
+    <VBox VBox.vgrow="ALWAYS">
+        <Label text="Liste des Produits" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+            <VBox.margin>
+                <Insets bottom="5"/>
+            </VBox.margin>
+        </Label>
+        <TableView fx:id="produitTableView" VBox.vgrow="ALWAYS" style="-fx-border-color: #ddd;">
+            <columns>
+                <TableColumn text="ID" prefWidth="50" fx:id="colId"/>
+                <TableColumn text="Code" prefWidth="100" fx:id="colCode"/>
+                <TableColumn text="Libellé" prefWidth="150" fx:id="colLibelle"/>
+                <TableColumn text="Type" prefWidth="100" fx:id="colType"/>
+                <TableColumn text="Quantité" prefWidth="80" fx:id="colQuantite"/>
+                <TableColumn text="Disponibilité" prefWidth="100" fx:id="colDisponibilite"/>
+            </columns>
+        </TableView>
+    </VBox>
+    
+</VBox>
